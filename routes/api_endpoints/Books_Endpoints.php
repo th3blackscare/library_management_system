@@ -14,8 +14,7 @@ use App\Http\Controllers\BookOperationsController;
 
 Route::middleware('auth:api')->group(function (){
     Route::any('list',[BookOperationsController::class,'ListAllBooks']);
-    // we will use a custom middleware to make sure that only an admin can add new , update  or delete a book
-    Route::middleware('hasAdminRole')->any('add',[BookOperationsController::class,'addBook']);
-    Route::middleware('hasAdminRole')->any('update',[BookOperationsController::class,'update']);
-    Route::middleware('hasAdminRole')->any('delete',[BookOperationsController::class,'delete']);
+    Route::post('add',[BookOperationsController::class,'addBook']);
+    Route::post('update',[BookOperationsController::class,'update']);
+    Route::post('delete',[BookOperationsController::class,'delete']);
 });

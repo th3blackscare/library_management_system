@@ -37,8 +37,12 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->middleware('force-json')
                 ->prefix('api/books')
-//                ->prefix('books')
                 ->group(base_path('routes/api_endpoints/Books_Endpoints.php'));
+
+            Route::middleware('api')
+                ->middleware('force-json')
+                ->prefix('api/borrower')
+                ->group(base_path('routes/api_endpoints/Borrower_Endpoints.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));

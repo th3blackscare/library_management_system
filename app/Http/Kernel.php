@@ -66,6 +66,5 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'force-json' => \App\Http\Middleware\ForceJsonResponse::class,
-        'hasAdminRole' => \App\Http\Middleware\CheckUserRole::class,
     ];
 }
