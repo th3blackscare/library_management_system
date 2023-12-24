@@ -22,7 +22,7 @@ class BorrowerController extends Controller
             'phone' => 'required|string|unique:borrowers',
         ]);
 
-        if($validation->fails()) return response()->json(['message' => implode($validation->errors()->all())], 400);
+        if($validation->fails()) return response()->json(['message' => implode($validation->errors()->all())], 422);
 
         $user = DB::table('borrowers')->insertGetId([
             'name' => $request->name,

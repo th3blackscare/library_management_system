@@ -13,7 +13,7 @@ use App\Http\Controllers\BookOperationsController;
  **/
 
 Route::middleware('auth:api')->group(function (){
-    Route::any('list',[BookOperationsController::class,'ListAllBooks']);
+    Route::middleware('throttle:10,10')->any('list',[BookOperationsController::class,'ListAllBooks']);
     Route::post('add',[BookOperationsController::class,'addBook']);
     Route::post('update',[BookOperationsController::class,'update']);
     Route::post('delete',[BookOperationsController::class,'delete']);
