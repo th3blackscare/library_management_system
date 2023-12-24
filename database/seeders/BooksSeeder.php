@@ -18,7 +18,8 @@ class BooksSeeder extends Seeder
         User::create([
             'name' => 'user',
             'email' => 'user',
-            'password'=> Hash::make('123456789')
+            'password'=> Hash::make('123456789'),
+            'type' => 'admin'
         ]);
         for ($i=0;$i<160;$i++) {
             DB::table('books')->insert([
