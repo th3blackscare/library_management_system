@@ -42,10 +42,18 @@
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
         "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan migrate"
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi",
+            "@php artisan passport:install"
+        ],
+        "seed-books-to-db" : [
+            "@php artisan db:seed BooksSeeder"
+        ],
+        "seed-borrowers-to-db" : [
+            "@php artisan db:seed BorrowersSeeder"
         ]
     },
     "extra": {

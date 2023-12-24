@@ -10,6 +10,14 @@ class BookOperationsController extends Controller
 {
     public function ListAllBooks(Request $request)
     {
+
+        $validator = Validator::make($request->all(),[
+            'title' => 'string',
+            'author' => 'string',
+            'isbn' => 'string',
+        ]);
+        if($validator->fails()) return response()->json(['message' => implode($validator->errors()->all())], 400);
+
         $booksQuery = DB::table('books')->select('id', 'title', 'author', 'isbn', 'avail_quantity', 'shelf_loc')->where('status','!=','deleted');
         /**
          * there is multiple if without else because we have a search criteria
@@ -75,7 +83,7 @@ class BookOperationsController extends Controller
          * so to make sure that we will not insert a new book that was previously was there. we will check if a book
          * with the isbn is previously was recorder. since the isbn is a unique identifier for the books and
          * can only belong to a one book, we will use it for finding any previous books.
-         * if a record exist, we will update it's status to available. and increase the quantity with the new quantity.
+         * if a record exist, we will update its status to available. and increase the quantity with the new quantity.
          */
 
         /**
